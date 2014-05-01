@@ -1,0 +1,33 @@
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Introduction to pollstR}
+-->
+
+```{r, echo = FALSE, results='hide', message = FALSE}
+suppressPackageStartupMessages({
+  library("dplyr")
+  library("ggplot2")
+  library("pollstR")
+})
+knitr::opts_chunk$set(
+  fig.path = 'figures/',
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE)
+```
+
+```{r intro, child = './children/intro.Rmd'}
+```
+
+```{r install, child = './children/api-overview.Rmd'}
+```
+
+```{r install, child = './children/example-obamas-approval.Rmd'}
+```
+
+<!--  LocalWords:  Huffpost API Huffington CRAN github devtools str
+ -->
+<!--  LocalWords:  devools jrnold ggplot obama url aes favorability
+ -->
+<!--  LocalWords:  Bararck
+ -->
