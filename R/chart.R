@@ -15,7 +15,7 @@ pollstr_chart_parse <- function(.data) {
                    format = "%Y-%m-%dT%H:%M:%SZ",
                    tz = "GMT")
     if (length(.data[["estimates"]])) {
-        estimates <- factors2char(ldply(.data[["estimates"]], convert_df))
+        estimates <- ldply(.data[["estimates"]], convert_df)
         .data[["estimates"]] <- estimates
     }
     
@@ -23,13 +23,11 @@ pollstr_chart_parse <- function(.data) {
         .data[["estimates_by_date"]] <-
             ldply(.data[["estimates_by_date"]],
                   function(x) {
-                      y <- ldply(x[["estimates"]], as.data.frame)
+                      y <- ldply(x[["estimates"]], convert_df)
                       y[["date"]] <- as.Date(x[["date"]])
-                      y <- factors2char(y)
                       y
                   })
     }
-    .data <- factors2char(.data)
     structure(.data, class = "pollstr_chart")
 }
 
@@ -41,14 +39,13 @@ pollstr_chart_parse <- function(.data) {
 #' @param convert Rearrange the data returned by the API into easier to use data frames.
 #' @return If \code{convert=TRUE}, then a \code{"pollstr_chart"} object with elements
 #' \itemize{
-#' \item \code{title}
-#' \item \code{slug}
-#' \item \code{topic}
-
-#' #' \item \code{short_title}
-#' \item \code{poll_count}
-#' \item \code{last_updated}
-#' \item \code{url}
+#' \item \code{title} Title of the chart.
+#' \item \code{slug} Slug (URL-friendly title) of the chart.
+#' \item \code{topic} Topic of the chart.
+#' \item \code{short_title} Short title of the chart.
+#' \item \code{poll_count} Number of polls in the chart.
+#' \item \code{last_updated} Time the chart was last updated.
+#' \item \code{url} URL of the chart.
 #' \item \code{estimates} A data frame with an observation for each choice and the current estimates.
 #' \item \code{estimates_by_date} A data frame with an observation for each choice at each date, with estimates.
 #' }
