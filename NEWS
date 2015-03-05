@@ -1,4 +1,6 @@
-pollstR News
+CHANGES IN 1.2.0
+
+* Add showall argument to pollstr_charts and pollstr_polls
 
 CHANGES IN 1.1.1
 

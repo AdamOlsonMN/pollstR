@@ -12,7 +12,7 @@ pollstr_chart_parse <- function(.data) {
     .data[["election_date"]] <- electiondate2date(.data[["election_date"]])
     .data[["last_updated"]] <-
         as.POSIXct(.data[["last_updated"]],
-                   format = "%Y-%m-%dT%H:%M:%SZ",
+                   format = "%Y-%m-%dT%H:%M:%OSZ",
                    tz = "GMT")
     if (length(.data[["estimates"]])) {
         estimates <- ldply(.data[["estimates"]], convert_df)
@@ -37,6 +37,7 @@ pollstr_chart_parse <- function(.data) {
 #'
 #' @param slug The slug-name of the chart to be returned.
 #' @param convert Rearrange the data returned by the API into easier to use data frames.
+#' @references \url{http://elections.huffingtonpost.com/pollster/api}
 #' @return If \code{convert=TRUE}, then a \code{"pollstr_chart"} object with elements
 #' \itemize{
 #' \item \code{title} Title of the chart.
@@ -52,7 +53,7 @@ pollstr_chart_parse <- function(.data) {
 #' Otherwise, a \code{"list"} in the original structure of the json returned by the API.
 #' @examples
 #' \dontrun{
-#' chart1 <- pollstr_chart('2012-virginia-senate-allen-vs-kaine')
+#' chart1 <- pollstr_chart('2012-general-election-romney-vs-obama')
 #' }
 #' @export
 pollstr_chart <- function(slug, convert=TRUE) {
